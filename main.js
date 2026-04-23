@@ -1,3 +1,90 @@
+class ContactForm extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+            <style>
+                .form-container {
+                    background: #2C2C2C;
+                    border-radius: 25px;
+                    padding: 40px;
+                    margin-top: 30px;
+                    color: white;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                    font-family: 'Helvetica Neue', sans-serif;
+                    width: 100%;
+                    max-width: 500px;
+                }
+                h2 {
+                    font-weight: 300;
+                    margin-bottom: 20px;
+                    text-align: center;
+                    letter-spacing: 1px;
+                }
+                .form-group {
+                    margin-bottom: 20px;
+                }
+                label {
+                    display: block;
+                    margin-bottom: 8px;
+                    color: #aaa;
+                    font-size: 0.9rem;
+                }
+                input, textarea {
+                    width: 100%;
+                    padding: 12px;
+                    background: #1a1a1a;
+                    border: 1px solid #444;
+                    border-radius: 8px;
+                    color: white;
+                    font-size: 1rem;
+                    transition: border-color 0.3s ease;
+                }
+                input:focus, textarea:focus {
+                    outline: none;
+                    border-color: #ff4d4d;
+                }
+                button {
+                    width: 100%;
+                    padding: 15px;
+                    background: linear-gradient(145deg, #ff4d4d, #d32f2f);
+                    border: none;
+                    border-radius: 50px;
+                    color: white;
+                    font-size: 1.1rem;
+                    cursor: pointer;
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                    margin-top: 10px;
+                }
+                button:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+                }
+            </style>
+            <div class="form-container">
+                <h2>제휴 문의</h2>
+                <form action="https://formspree.io/f/myklbaeq" method="POST">
+                    <div class="form-group">
+                        <label for="name">성함/업체명</label>
+                        <input type="text" name="name" id="name" required placeholder="홍길동">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일 주소</label>
+                        <input type="email" name="email" id="email" required placeholder="example@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">문의 내용</label>
+                        <textarea name="message" id="message" rows="4" required placeholder="문의하실 내용을 입력해주세요."></textarea>
+                    </div>
+                    <button type="submit">문의하기</button>
+                </form>
+            </div>
+        `;
+    }
+}
+
+customElements.define('contact-form', ContactForm);
+
 class WeatherWidget extends HTMLElement {
     constructor() {
         super();

@@ -5,9 +5,9 @@ body {
     min-height: 100vh;
     background-color: #1a1a1a;
     font-family: 'Helvetica Neue', sans-serif;
-    overflow: hidden;
+    overflow-y: auto;
     position: relative;
-    padding: 20px;
+    padding: 60px 20px;
 }
 
 weather-widget {
