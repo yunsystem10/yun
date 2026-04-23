@@ -22,6 +22,15 @@ body::before {
     z-index: -1;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 600px;
+}
+
 * {
     box-sizing: border-box;
 }
