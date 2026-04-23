@@ -158,7 +158,12 @@ class LottoDrawingMachine extends HTMLElement {
                 @keyframes pop-in {
                     to { transform: scale(1); }
                 }
-                #generate-btn {
+                .button-group {
+                    display: flex;
+                    gap: 15px;
+                    justify-content: center;
+                }
+                #generate-btn, #reset-btn {
                     padding: 15px 35px;
                     border: none;
                     border-radius: 50px;
@@ -168,10 +173,15 @@ class LottoDrawingMachine extends HTMLElement {
                     transition: all 0.3s ease-in-out;
                     position: relative;
                     overflow: hidden;
-                    background: linear-gradient(145deg, #333, #1a1a1a);
                     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
                 }
-                #generate-btn::before {
+                #generate-btn {
+                    background: linear-gradient(145deg, #333, #1a1a1a);
+                }
+                #reset-btn {
+                    background: linear-gradient(145deg, #4a1a1a, #2a0a0a);
+                }
+                #generate-btn::before, #reset-btn::before {
                     content: '';
                     position: absolute;
                     top: 50%;
@@ -179,17 +189,22 @@ class LottoDrawingMachine extends HTMLElement {
                     transform: translate(-50%, -50%) rotate(0deg);
                     width: 200%;
                     height: 200%;
-                    background: conic-gradient(from 0deg, transparent 50%, #ff5722, #ffc107, #4caf50, #03a9f4, #9c27b0, #ff5722);
                     animation: rotate-glow 5s linear infinite paused;
                 }
-                #generate-btn:hover::before {
+                #generate-btn::before {
+                    background: conic-gradient(from 0deg, transparent 50%, #ff5722, #ffc107, #4caf50, #03a9f4, #9c27b0, #ff5722);
+                }
+                #reset-btn::before {
+                    background: conic-gradient(from 0deg, transparent 50%, #ff4d4d, #d32f2f, #b71c1c, #ff4d4d);
+                }
+                #generate-btn:hover::before, #reset-btn:hover::before {
                     animation-play-state: running;
                 }
-                #generate-btn:hover {
+                #generate-btn:hover, #reset-btn:hover {
                     transform: translateY(-2px);
                     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
                 }
-                #generate-btn span {
+                #generate-btn span, #reset-btn span {
                     position: relative;
                     z-index: 1;
                 }
@@ -201,13 +216,23 @@ class LottoDrawingMachine extends HTMLElement {
             <div class="lotto-machine">
                 <h1><span class="lotto-red">로또</span> 기계</h1>
                 <div class="number-display"></div>
-                <button id="generate-btn"><span>Generate</span></button>
+                <div class="button-group">
+                    <button id="generate-btn"><span>Generate</span></button>
+                    <button id="reset-btn"><span>초기화</span></button>
+                </div>
             </div>
         `;
 
         this.generateBtn = this.shadowRoot.getElementById('generate-btn');
+        this.resetBtn = this.shadowRoot.getElementById('reset-btn');
         this.numberDisplay = this.shadowRoot.querySelector('.number-display');
+        
         this.generateBtn.addEventListener('click', this.generateNumbers.bind(this));
+        this.resetBtn.addEventListener('click', this.resetNumbers.bind(this));
+    }
+
+    resetNumbers() {
+        this.numberDisplay.innerHTML = '';
     }
 
     getColor(number) {
