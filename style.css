@@ -1,1 +1,27 @@
-/* Add styles here */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    font-family: 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><rect fill="%231a1a1a" width="800" height="800"/><g fill-opacity="0.2"><circle fill="%231a1a1a" cx="400" cy="400" r="600"/><circle fill="%232f2f2f" cx="400" cy="400" r="500"/><circle fill="%233c3c3c" cx="400" cy="400" r="400"/><circle fill="%234f4f4f" cx="400" cy="400" r="300"/><circle fill="%23616161" cx="400" cy="400" r="200"/><circle fill="%237f7f7f" cx="400" cy="400" r="100"/></g></svg>');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -1;
+}
+
+* {
+    box-sizing: border-box;
+}
