@@ -49,10 +49,17 @@ class LottoDrawingMachine extends HTMLElement {
                 }
                 .number-display {
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     min-height: 80px;
                     margin: 30px 0;
+                    gap: 15px;
+                }
+                .number-row {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
                 }
                 .number-ball {
                     display: flex;
@@ -134,22 +141,28 @@ class LottoDrawingMachine extends HTMLElement {
 
     generateNumbers() {
         this.numberDisplay.innerHTML = '';
-        const numbers = new Set();
-        while (numbers.size < 6) {
-            const randomNumber = Math.floor(Math.random() * 45) + 1;
-            numbers.add(randomNumber);
+        for (let i = 0; i < 5; i++) {
+            const row = document.createElement('div');
+            row.classList.add('number-row');
+            
+            const numbers = new Set();
+            while (numbers.size < 6) {
+                const randomNumber = Math.floor(Math.random() * 45) + 1;
+                numbers.add(randomNumber);
+            }
+
+            const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+
+            sortedNumbers.forEach((number, index) => {
+                const ball = document.createElement('div');
+                ball.classList.add('number-ball');
+                ball.textContent = number;
+                ball.style.background = this.getColor(number);
+                ball.style.animationDelay = `${(i * 6 + index) * 0.05}s`;
+                row.appendChild(ball);
+            });
+            this.numberDisplay.appendChild(row);
         }
-
-        const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-
-        sortedNumbers.forEach((number, index) => {
-            const ball = document.createElement('div');
-            ball.classList.add('number-ball');
-            ball.textContent = number;
-            ball.style.background = this.getColor(number);
-            ball.style.animationDelay = `${index * 0.1}s`;
-            this.numberDisplay.appendChild(ball);
-        });
     }
 }
 
