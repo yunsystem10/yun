@@ -13,7 +13,7 @@ class ContactForm extends HTMLElement {
                     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
                     font-family: 'Helvetica Neue', sans-serif;
                     width: 100%;
-                    max-width: 500px;
+                    max-width: 1000px;
                 }
                 h2 {
                     font-weight: 300;
@@ -101,6 +101,8 @@ class LottoDrawingMachine extends HTMLElement {
                     padding: 40px;
                     text-align: center;
                     color: white;
+                    width: 100%;
+                    max-width: 1000px;
                     box-shadow: 
                         0px 2.8px 2.2px rgba(0, 0, 0, 0.02), 
                         0px 6.7px 5.3px rgba(0, 0, 0, 0.028), 
